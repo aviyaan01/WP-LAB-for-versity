@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashwoto Das Noyon | Portfolio</title>
+    <style>
+        /* =========================================
+           CSS VARIABLES & BASE STYLES
+           ========================================= */
+        :root {
+            /* Neural/Tech OS Dark Theme Palette */
+            --bg-dark: #0a0f16;
+            --bg-card: #131c29;
+            --bg-card-hover: #1a2536;
+            
+            --accent-cyan: #00f0ff;
+            --accent-purple: #9d4edd;
+            
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+            
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(157, 78, 221, 0.05), transparent 25%);
+        }
+
+        /* =========================================
+           TYPOGRAPHY & UTILITIES
+           ========================================= */
+        h1, h2, h3 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-speed);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent-purple);
+            padding-bottom: 0.5rem;
+        }
+
+        .highlight-cyan { color: var(--accent-cyan); }
+        .highlight-purple { color: var(--accent-purple); }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 15, 22, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-greeting {
+            font-family: var(--font-mono);
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .title {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 1rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all var(--transition-speed);
+            box-shadow: inset 0 0 0 rgba(0, 240, 255, 0);
+        }
+
+        .cta-btn:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-main);
+        }
+
+        /* =========================================
+           SKILLS SECTION
+           ========================================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-purple);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           PROJECTS SECTION
+           ========================================= */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-speed);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        /* =========================================
+           CONTACT & FOOTER
+           ========================================= */
+        #contact {
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .email-link {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--accent-purple);
+            padding-bottom: 5px;
+        }
+
+        .email-link:hover {
+            color: var(--accent-purple);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .social-links a {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN (Media Queries)
+           ========================================= */
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .title {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Shashwoto Das <span>Noyon</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <span class="hero-greeting">Initialize System...</span>
+            <h1>Shashwoto Das Noyon</h1>
+            <h2 class="title">Full-Stack Developer / Vibe Coder / Software Engineering Student</h2>
+            <p class="tagline">"Building at the intersection of code & intelligence."</p>
+            <a href="#projects" class="cta-btn">View Work</a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About <span class="highlight-cyan">System</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I architect intelligent systems, voice-driven AI desktop assistants, and high-performance web solutions with Neural OS aesthetics.</p>
+                    <p>Currently a Software Engineering Student at <strong>Metropolitan University, Sylhet, Bangladesh</strong>, I have over 2+ years of coding experience. My core focus lies in bridging the gap between sophisticated system architecture and intuitive user experiences.</p>
+                    <p>Whether it's building complex AI pipelines or crafting responsive frontend environments, I am driven by logic, performance, and clean, scalable code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Core <span class="highlight-purple">Competencies</span></h2>
+            <div class="skills-grid">
+                
+                <!-- Frontend Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">&lt;/&gt;</div>
+                    <h3>Frontend</h3>
+                    <ul class="skill-list">
+                        <li>JavaScript</li>
+                        <li>React.js</li>
+                        <li>HTML5 / CSS3</li>
+                        <li>TailwindCSS</li>
+                    </ul>
+                </div>
+
+                <!-- Backend & AI Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Backend & AI</h3>
+                    <ul class="skill-list">
+                        <li>Python (FastAPI)</li>
+                        <li>Node.js</li>
+                        <li>Gemini Live API</li>
+                        <li>PyQt6</li>
+                    </ul>
+                </div>
+
+                <!-- Data & ML Card -->
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data & ML</h3>
+                    <ul class="skill-list">
+                        <li>Vector DB</li>
+                        <li>PostgreSQL / MongoDB</li>
+                        <li>Pandas</li>
+                        <li>NLTK</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Deployed <span class="highlight-cyan">Modules</span></h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Habit Tracker</h3>
+                    </div>
+                    <p class="project-desc">A highly responsive productivity web app designed for daily routine tracking and consistency building.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">LocalStorage</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>MJ Neural Assistant</h3>
+                    </div>
+                    <p class="project-desc">A sophisticated voice-activated AI desktop assistant capable of intelligent system interactions and dynamic responses.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyQt6</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Gemini Live API</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>NLP Pipeline</h3>
+                    </div>
+                    <p class="project-desc">A comprehensive natural language processing pipeline engineered for deep text analysis and feature extraction.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLTK</span>
+                        <span class="tech-tag">Scikit-Learn</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Analyzer</h3>
+                    </div>
+                    <p class="project-desc">A robust data analysis tool built for processing complex datasets and generating clear visual representations.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container contact-content">
+            <h2 class="section-title">Establish <span class="highlight-purple">Connection</span></h2>
+            <p class="contact-text">Interested in collaborating on intelligent systems, high-performance web applications, or discussing software architecture? My inbox is always open.</p>
+            
+            <a href="mailto:shashwotodas@gmail.com" class="email-link">shashwotodas@gmail.com</a>
+            
+            <div class="social-links">
+                <a href="https://github.com/aviyaan01" target="_blank" rel="noopener noreferrer">
+                    <span>GitHub</span>
+                    <span>@aviyaan01</span>
+                </a>
+                <a href="https://linkedin.com/in/shashwoto-das-noyon-1834a3419" target="_blank" rel="noopener noreferrer">
+                    <span>LinkedIn</span>
+                    <span>Shashwoto Das Noyon</span>
+                </a>
+                <a href="https://twitter.com/aviyaan_01" target="_blank" rel="noopener noreferrer">
+                    <span>Twitter</span>
+                    <span>@aviyaan_01</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Designed & Built by Shashwoto Das Noyon &copy; 2026. Neural OS Theme.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
